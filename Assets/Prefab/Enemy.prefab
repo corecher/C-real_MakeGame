@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5130897508917358679}
   - component: {fileID: 3024271783706736623}
   - component: {fileID: 8862977060357468519}
-  m_Layer: 0
+  - component: {fileID: -189126146275208534}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +109,7 @@ MonoBehaviour:
   loopSpeed: 2
   dashSpeed: 20
   dashDuration: 3
-  health: 100
+  myState: {fileID: 0}
 --- !u!61 &8862977060357468519
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155,3 +156,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-189126146275208534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972656852975113870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f4b225a35e1944c8bbeff665fba98a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 10
+  damage: 10

@@ -14,7 +14,7 @@ public class LoopAndDashEnemy : MonoBehaviour
     [Header("돌진 설정")]
     public float dashSpeed = 20f;
     public float dashDuration = 3f;
-
+    public EnemyState myState;
     private enum AttackPhase 
     { 
         MoveToTop,
@@ -22,14 +22,13 @@ public class LoopAndDashEnemy : MonoBehaviour
         Dashing
     }
     private AttackPhase currentPhase = AttackPhase.MoveToTop;
-
     private float stateTimer = 0f;
     private Vector2 loopCenter;
     private Vector2 dashDirection;
-    public int health = 100;
     void Start()
     {
         core = GameObject.FindGameObjectWithTag("Core").GetComponent<Transform>();
+        myState = GetComponent<EnemyState>();
     }
 
     void Update()
@@ -47,7 +46,7 @@ public class LoopAndDashEnemy : MonoBehaviour
                 break;
 
             case AttackPhase.Dashing:
-                DashTowardsPlayer();
+                DashTowards();
                 break;
         }
     }
@@ -80,7 +79,7 @@ public class LoopAndDashEnemy : MonoBehaviour
         }
     }
 
-    private void DashTowardsPlayer()
+    private void DashTowards()
     {
         transform.position += (Vector3)dashDirection * dashSpeed * Time.deltaTime;
         stateTimer += Time.deltaTime;
@@ -90,21 +89,12 @@ public class LoopAndDashEnemy : MonoBehaviour
             stateTimer = 0f;
         }
     }
-
-    public void GetDamage(int damage)
-    {
-        health -= damage;
-        Debug.Log($"적 피격! 남은 체력: {health}");
-        
-        if(health <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Core"))
         {
+            EnemyState enemy = collision.gameObject.GetComponent<EnemyState>();
+            enemy.GetDamage(myState.damage);
             Destroy(gameObject);
         }
     }

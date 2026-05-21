@@ -18,11 +18,13 @@ public class PlayerMovement : MonoBehaviour
     private int jumpCount;
     private int maxJumpCount = 1;
     private Animator animator;
+    public Collider2D collider;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        collider = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             jumpCount = 0;
+            collider.offset = new Vector2(0,-1);
         }
         if (Input.GetButtonDown("Jump")||Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -53,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        collider.offset = new Vector2(0,0);
         jumpCount++;
     }
 
@@ -61,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalInput > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
-            animator.SetTrigger("Attack");
+            
         }
         else if (horizontalInput < 0)
         {
