@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -9,14 +10,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("범위 설정")]
     public Vector2 spawnAreaSize = new Vector2(5f, 5f); // 소환 구역의 가로/세로 크기
 
-    void Update()
+    void Start()
     {
-        // 스페이스바를 누를 때마다 범위 내에 소환합니다.
-        // (원하는 키나 조건으로 변경 가능합니다)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnObjectsInArea();
-        }
+        StartCoroutine(EnemySpawnTime());
     }
 
     private void SpawnObjectsInArea()
@@ -43,8 +39,13 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(objectToSpawn, randomPosition, Quaternion.identity);
         }
     }
+    IEnumerator EnemySpawnTime()
+    {
+        SpawnObjectsInArea();
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(EnemySpawnTime());
+    }
 
-    // 유니티 에디터에서 소환 범위를 초록색 박스로 보여주는 기능입니다. (게임 화면에선 안 보임)
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green; // 선 색상

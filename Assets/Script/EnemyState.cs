@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyState : MonoBehaviour 
+public class EnemyState : MonoBehaviour,IState
 {
     public int hp=10;
     public int damage=10;

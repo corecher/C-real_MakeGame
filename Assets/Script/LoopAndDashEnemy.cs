@@ -93,7 +93,7 @@ public class LoopAndDashEnemy : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Core"))
         {
-            EnemyState enemy = collision.gameObject.GetComponent<EnemyState>();
+            CoreState enemy = collision.gameObject.GetComponent<CoreState>();
             enemy.GetDamage(myState.damage);
             Destroy(gameObject);
         }
