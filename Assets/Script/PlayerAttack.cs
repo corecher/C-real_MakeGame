@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class PlayerAttack : MonoBehaviour
 {
     [Header("공격 설정")]
@@ -11,9 +11,12 @@ public class PlayerAttack : MonoBehaviour
     [Header("공격 입력")]
     public KeyCode attackKey = KeyCode.Z;
     private Animator animator;
+    public CameraShake cameraShake;
+    private PlayerMovement playerMovement;
     void Start()
     {
         animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -32,7 +35,10 @@ public class PlayerAttack : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             EnemyState enemys  = enemy.gameObject.GetComponent<EnemyState>();
+            StartCoroutine(cameraShake.Shake(0.1f, 0.15f));
+            StartCoroutine(HitStop(0.05f));
             enemys.GetDamage(attackDamage);
+            playerMovement.jumpCount--;
         }
     }
     private void OnDrawGizmosSelected()
@@ -42,5 +48,13 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.yellow;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+    IEnumerator HitStop(float duration)
+    {
+        Time.timeScale = 0f;
+        
+        yield return new WaitForSecondsRealtime(duration);
+
+        Time.timeScale = 1f;
     }
 }

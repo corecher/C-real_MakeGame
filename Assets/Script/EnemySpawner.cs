@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator EnemySpawnTime()
     {
         SpawnObjectsInArea();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         StartCoroutine(EnemySpawnTime());
     }
 

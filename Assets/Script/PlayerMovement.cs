@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float horizontalInput;
     private bool isGrounded;
-    private int jumpCount;
+    public int jumpCount;
     private int maxJumpCount = 1;
     private Animator animator;
     public Collider2D collider;
@@ -43,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
                 Jump();
             }
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            FastFall();
+        }
         FlipCharacter();
         animator.SetBool("Jump",!isGrounded);
     }
@@ -58,6 +62,14 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         collider.offset = new Vector2(0,0);
         jumpCount++;
+    }
+    private void FastFall()
+    {
+        animator.SetTrigger("FastFall");
+        if (!isGrounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -45f);
+        }
     }
 
     private void FlipCharacter()
