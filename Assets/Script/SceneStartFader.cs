@@ -39,7 +39,8 @@ public class FadeManager : MonoBehaviour
     {
         yield return null;
         yield return null;
-
+        yield return null;
+        yield return null;
         if (scene.name != "GameEndScene")
         {
             fadeImage.color = Color.black;
