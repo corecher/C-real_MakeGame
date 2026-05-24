@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
                 Jump();
             }
         }
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G)||Input.GetKeyDown(KeyCode.DownArrow))
         {
             FastFall();
         }
