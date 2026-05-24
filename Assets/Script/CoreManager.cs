@@ -3,8 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class CoreManager : MonoBehaviour
 {
-    public void GameOver()
+    public void GameOver(bool success)
     {
-        SceneManager.LoadScene("GameEndScene");
+        EndingManager.Instance.successEnding = success;
+        if(success) FadeManager.Instance.fadeImage.color = Color.white;
+        else FadeManager.Instance.fadeImage.color = Color.black;
+        StartCoroutine(FadeManager.Instance.FadeOutAndLoadScene("GameEndScene"));
     }
 }

@@ -9,8 +9,7 @@ public class CoreState : MonoBehaviour,IState
         hp-=damage;
         if(hp<=0)
         {   
-            coreManager.GameOver();
-            Destroy(gameObject);
+            coreManager.GameOver(false);
         }
     }
 }

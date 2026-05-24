@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // 씬 전환을 위해 필수 추가
 
 public class DialogueManager : MonoBehaviour
 {
@@ -17,17 +16,13 @@ public class DialogueManager : MonoBehaviour
 
     [Header("씬 전환 설정")]
     public Image fadeImage;             // 페이드 효과에 사용할 UI Image
-    public float fadeDuration = 1.0f;   // 페이드아웃에 걸리는 시간 (초)
-    public string nextSceneName;        // 이동할 다음 씬의 정확한 이름
-
+    public string nextSceneName;
     private int currentIndex = 0;       // 현재 대사 번호
     private bool isTyping = false;      // 현재 글자가 타이핑 중인지 여부
     private bool isEnding = false;      // 대사가 끝나고 씬 전환 중인지 체크
     private Coroutine typingCoroutine;  // 타이핑 코루틴 제어용
-
     void Start()
     {
-        // 페이드 이미지 초기화 (시작할 때는 투명하게)
         if (fadeImage != null)
         {
             Color color = fadeImage.color;
@@ -36,13 +31,11 @@ public class DialogueManager : MonoBehaviour
             fadeImage.gameObject.SetActive(false);
         }
 
-        // 게임 시작 시 첫 대사 출력
         StartDialogue();
     }
 
     void Update()
     {
-        // 이미 대사가 끝나고 씬 전환 중이라면 입력을 무시
         if (isEnding) return;
 
         // 마우스 좌클릭 또는 스페이스바를 눌렀을 때
@@ -121,43 +114,8 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         isEnding = true;
-        dialogueText.text = ""; // 대사창 글자 비우기
-        
-        // 페이드아웃 코루틴 시작
-        StartCoroutine(FadeOutAndLoadScene());
+        dialogueText.text = "";
+        StartCoroutine(FadeManager.Instance.FadeOutAndLoadScene(nextSceneName));
     }
-
-    // 화면을 어둡게 만든 뒤 씬을 전환하는 코루틴
-    IEnumerator FadeOutAndLoadScene()
-    {
-        if (fadeImage == null)
-        {
-            Debug.LogError("Fade Image가 연결되지 않았습니다! 바로 씬을 전환합니다.");
-            SceneManager.LoadScene(nextSceneName);
-            yield break;
-        }
-
-        fadeImage.gameObject.SetActive(true);
-        Color startColor = fadeImage.color;
-        startColor.a = 0f;
-        fadeImage.color = startColor;
-
-        float elapsedTime = 0f;
-
-        // 투명도(Alpha)를 0에서 1로 서서히 증가시킴
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
-            
-            Color color = fadeImage.color;
-            color.a = alpha;
-            fadeImage.color = color;
-
-            yield return null;
-        }
-
-        // 페이드 완료 후 완전히 어두워졌을 때 다음 씬 로드
-        SceneManager.LoadScene(nextSceneName);
-    }
+    
 }
