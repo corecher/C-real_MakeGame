@@ -27,7 +27,7 @@ public class DialogueManager : MonoBehaviour
         {
             Color color = fadeImage.color;
             color.a = 0f;
-            fadeImage.color = color;
+            fadeImage.color = color;
             fadeImage.gameObject.SetActive(false);
         }
 

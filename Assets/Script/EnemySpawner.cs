@@ -36,7 +36,6 @@ public class EnemySpawner : MonoBehaviour
             );
 
             // 3. 해당 위치에 오브젝트 소환
-            Instantiate(objectToSpawn, randomPosition, Quaternion.identity);
         }
     }
     IEnumerator EnemySpawnTime()

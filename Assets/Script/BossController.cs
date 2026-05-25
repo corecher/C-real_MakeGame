@@ -101,7 +101,7 @@ public class BossController : MonoBehaviour
     }
     public void OnWeakPointDestroyed()
     {
-        hasWeakPoint = false; // 보스에게 약점이 없어졌음을 알림
+        // 보스에게 약점이 없어졌음을 알림
         respawnTimer = 0f;    // 타이머를 0부터 다시 시작하게 설정
     }
     void EmergeFromBelow()

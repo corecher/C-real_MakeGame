@@ -91,7 +91,7 @@ public class LoopAndDashEnemy : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Core"))
+        if(collision.gameObject.CompareTag("Player"))
         {
             CoreState enemy = collision.gameObject.GetComponent<CoreState>();
             enemy.GetDamage(myState.damage);

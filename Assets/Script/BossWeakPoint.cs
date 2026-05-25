@@ -20,7 +20,7 @@ public class BossWeakPoint : MonoBehaviour
     void BreakWeakPoint()
     {
         bossController.OnWeakPointDestroyed();
-        boss.GetDamage(damageToBoss);
+        // 여기 뭔가 있어야 할 것 같은데?
         Instantiate(explosionEffect,transform.position,Quaternion.identity);
         Destroy(gameObject); 
     }

@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     public BossController bossController;
     void Update()
     {
-        gameTime -= Time.deltaTime;    
+        gameTime += Time.deltaTime;
         timer.text = "남은 시간 : "+(int)gameTime+"초";
         if(gameTime < 0f)
         {

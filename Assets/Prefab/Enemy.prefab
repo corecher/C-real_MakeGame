@@ -123,9 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f4b225a35e1944c8bbeff665fba98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 20
   damage: 5
-  explosionEffect: {fileID: 1951168309255639085, guid: 87780f780fbe3ef48a1dfd259926fbc0, type: 3}
+  explosionEffect: {fileID: 0}
   coreManager: {fileID: 0}
   bossSprite: {fileID: 0}
 --- !u!95 &3035120625054541252

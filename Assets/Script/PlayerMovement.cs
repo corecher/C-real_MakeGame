@@ -20,30 +20,23 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public Collider2D collider;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        collider = GetComponent<Collider2D>();
-    }
-
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        //horizontalInput = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if (isGrounded)
         {
             jumpCount = 0;
             collider.offset = new Vector2(0,-1);
         }
-        if (Input.GetButtonDown("Jump")||Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded || jumpCount < maxJumpCount)
             {
                 Jump();
             }
         }
-        if (Input.GetKeyDown(KeyCode.G)||Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyUp(KeyCode.G))
         {
             FastFall();
         }
@@ -76,12 +69,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (horizontalInput > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, -1, 1);
             
         }
         else if (horizontalInput < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1);
         }
     }
     private void OnDrawGizmos()

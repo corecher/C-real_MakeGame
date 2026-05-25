@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EndingManager : MonoBehaviour
 {
-    public static EndingManager Instance;
+    public static EndingManager Instance;
     public bool successEnding;
 
     private void Awake()
