@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 0}
   damageToBoss: 10
+  explosionEffect: {fileID: 1148208601654944679, guid: aebede090bf6ac345aa0267883d0d229, type: 3}
 --- !u!61 &2529773541104190623
 BoxCollider2D:
   m_ObjectHideFlags: 0

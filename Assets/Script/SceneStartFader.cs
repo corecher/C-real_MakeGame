@@ -38,9 +38,6 @@ public class FadeManager : MonoBehaviour
     private IEnumerator SceneLoadedRoutine(Scene scene)
     {
         yield return null;
-        yield return null;
-        yield return null;
-        yield return null;
         if (scene.name != "GameEndScene")
         {
             fadeImage.color = Color.black;

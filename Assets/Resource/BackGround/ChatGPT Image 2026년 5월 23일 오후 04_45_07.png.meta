@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "ChatGPT Image 2026\uB144 5\uC6D4 23\uC77C \uC624\uD6C4 04_45_07_0": 5040313666710096878
+      "ChatGPT Image 2026\uB144 5\uC6D4 23\uC77C \uC624\uD6C4 04_45_07_1": 6123112815993359585
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
